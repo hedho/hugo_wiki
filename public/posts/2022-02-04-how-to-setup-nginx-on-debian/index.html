@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>How to Setup Nginx on Debian</title>
+	
+	
+	<link rel="stylesheet" href="https://wiki.oddprotocol.org/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	========================<br>
+	== <a href="https://wiki.oddprotocol.org/">[oddprotocol wiki]</a> ==<br>
+	========================
+	<div style="float: right;">SHELL, BNC, VPSSEC via IRCnow!</div><br>
+	<p>
+	<nav>
+			<a href="https://wiki.oddprotocol.org/"><b>Start</b></a>.
+			
+			
+			<a href="https://wiki.oddprotocol.org/search/"><b>Search</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/posts/"><b>Archive</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/categories/"><b>Categories</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/tags/"><b>Tags</b></a>.
+			
+	</nav>
+	</p>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>How to Setup Nginx on Debian</h1>
+                         
+                            
+                            Author: <b style="color:red;">monaco</b></br>
+			<b><time>04.02.2022 02:41</time></b>
+			
+		           <a href="https://wiki.oddprotocol.org/tags/linux">Linux</a>
+        	       
+		           <a href="https://wiki.oddprotocol.org/tags/debian">Debian</a>
+        	       
+
+			<div>
+				<p>How to setup Nginx on Debian</p>
+<p>First of all you would need to &ldquo;ssh&rdquo; to you&rsquo;re server:</p>
+<pre><code>ssh user@127.0.0.1
+</code></pre>
+<p>After successfully loged in on you&rsquo;re server:</p>
+<pre><code>sudo apt install nginx
+</code></pre>
+<p>Start Nginx:</p>
+<pre><code>sudo systemctl start nginx
+</code></pre>
+<p>Enable to start at reboot:</p>
+<pre><code>sudo systemctl enable nginx
+</code></pre>
+<p>Check Nginx status:</p>
+<pre><code>systemctl status nginx  
+</code></pre>
+<blockquote>
+<p>Output should be similar to:</p>
+</blockquote>
+<pre><code>init@init ~ % systemctl status nginx
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset:&gt;
+     Active: active (running) since Fri 2021-10-29 14:02:24 CEST; 1min 22s ago
+       Docs: man:nginx(8)
+    Process: 3813 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_proce&gt;
+    Process: 3815 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (c&gt;
+   Main PID: 3816 (nginx)
+      Tasks: 3 (limit: 2201)
+     Memory: 6.2M
+        CPU: 49ms
+     CGroup: /system.slice/nginx.service
+             ├─3816 &quot;nginx: master process /usr/sbin/nginx -g daemon on; master&gt;
+             ├─3817 &quot;nginx: worker process&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;&gt;
+             └─3818 &quot;nginx: worker process&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;&gt;
+init@init ~ % 
+</code></pre>
+<p>You&rsquo;re default web root path is:</p>
+<pre><code>cd /var/www/html/
+</code></pre>
+<p><code>ls</code></p>
+<p>Output:</p>
+<pre><code>init@init /var/www/html % ls
+index.nginx-debian.html
+init@init /var/www/html %
+</code></pre>
+<p>Curl you&rsquo;re server IP address should give you the output of &ldquo;Welcome to nginx.&rdquo;</p>
+<pre><code>curl 127.0.0.1
+</code></pre>
+<p>Output &gt;</p>
+<pre><code>init@init /var/www/html % curl 127.0.0.1
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href=&quot;[http://nginx.org/](http://nginx.org/)&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href=&quot;[http://nginx.com/](http://nginx.com/)&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+init@init /var/www/html %
+</code></pre>
+<p>Edit or setup specific domain names on Nginx:</p>
+<pre><code>cd /etc/nginx/sites-enabled/
+</code></pre>
+<p>Copy the default</p>
+<pre><code>cp default example.domain
+</code></pre>
+<p>You will find there a helpful documentacion how to do that as example:</p>
+<p>vim example.domain</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    server <span style="color:#f92672">{</span>
+           listen 80<span style="color:#f92672">;</span>
+           listen <span style="color:#f92672">[::]:</span>80<span style="color:#f92672">;</span>
+
+           server_name example<span style="color:#f92672">.</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">;</span>
+
+           root <span style="color:#f92672">/</span>var<span style="color:#f92672">/</span>www<span style="color:#f92672">/</span>example<span style="color:#f92672">.</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">;</span>
+           index index<span style="color:#f92672">.</span><span style="color:#a6e22e">html</span><span style="color:#f92672">;</span>
+
+           location <span style="color:#f92672">/</span> <span style="color:#f92672">{</span>
+                   try_files $uri $uri<span style="color:#f92672">/</span> <span style="color:#f92672">=</span>404<span style="color:#f92672">;</span>
+           <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div>
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/">How to Install Kissmo Paste</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/">How to Setup Nginx Phpfpm</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/">How to Setup Nginx on Debian</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/">How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/">How to Setup Weechat Relay on Openbsd</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="https://wiki.oddprotocol.org/"><b>[oddprotocol wiki]</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>

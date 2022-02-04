@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>[oddprotocol wiki]</title>
+    <link>https://wiki.oddprotocol.org/</link>
+    <description>Recent content on [oddprotocol wiki]</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Feb 2022 02:47:37 +0100</lastBuildDate><atom:link href="https://wiki.oddprotocol.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Install Kissmo Paste</title>
+      <link>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/</link>
+      <pubDate>Fri, 04 Feb 2022 02:47:37 +0100</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/</guid>
+      <description>Go to the desired directory with commands as follow:
+cd /var/www/websiteyouwant - This can be any location you put you&amp;rsquo;re web.
+wget https://gitlab.com/hedho/KISSmo/-/archive/main/KISSmo-main.zip
+Then unzip:
+unzip KISSmo-main.zip
+Edit index.php:
+Replace line 7 where you will find:
+$ncsite=&amp;ldquo;paste.oddprotocol.org 7777&amp;rdquo;;
+Edit it to:
+$ncsite=&amp;ldquo;yourweb.tld 7777&amp;rdquo;;
+Replace line 60 where you will find:
+$sitename = &amp;ldquo;https://paste.oddprotocol.org/p&amp;quot;;
+Edit it to:
+$sitename = &amp;ldquo;https://youreweb.tld/p&amp;quot;;
+If you&amp;rsquo;re using OpenHTTPD you will need to add this to /etc/httpd.</description>
+    </item>
+    
+    <item>
+      <title>How to Setup Nginx Phpfpm</title>
+      <link>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/</link>
+      <pubDate>Fri, 04 Feb 2022 02:43:44 +0100</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/</guid>
+      <description>Install PHP7.4
+By default, Debian ships with PHP 7.4 in its upstream repositories. You can install it easily by just running the following command:
+apt-get install php7.4 -y  Once the PHP is installed, verify the installed version with the following command:
+php --version  You should get the following output:
+PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS ) Copyright (c) The PHP Group Zend Engine v3.4.0, Copyright (c) Zend Technologies</description>
+    </item>
+    
+    <item>
+      <title>How to Setup Nginx on Debian</title>
+      <link>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/</link>
+      <pubDate>Fri, 04 Feb 2022 02:41:42 +0100</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/</guid>
+      <description>How to setup Nginx on Debian
+First of all you would need to &amp;ldquo;ssh&amp;rdquo; to you&amp;rsquo;re server:
+ssh user@127.0.0.1  After successfully loged in on you&amp;rsquo;re server:
+sudo apt install nginx  Start Nginx:
+sudo systemctl start nginx  Enable to start at reboot:
+sudo systemctl enable nginx  Check Nginx status:
+systemctl status nginx   Output should be similar to:
+ init@init ~ % systemctl status nginx ● nginx.</description>
+    </item>
+    
+    <item>
+      <title>How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</title>
+      <link>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/</link>
+      <pubDate>Fri, 04 Feb 2022 01:46:40 +0100</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/</guid>
+      <description>This is a step by step how-to Install XFCE on OpenBSD and setup it.
+So we start by applying thise commands at terminal:
+usermod -G wheel user usermod -G operator user usermod -G staff user After you put the permissions at the user you want to use follow this:
+pkg_add nano nano /etc/doas.conf permit persist keepenv user Start installing xfce packages and necessary packages needed for XFCE:
+pkg_add xfce consolekit2 pkg_add slim dbus avahi Add thise lines at /root/.</description>
+    </item>
+    
+    <item>
+      <title>How to Setup Weechat Relay on Openbsd</title>
+      <link>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/</link>
+      <pubDate>Fri, 04 Feb 2022 01:21:18 +0100</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/</guid>
+      <description>This document is the specification of WeeChat Relay protocol: the protocol used to relay WeeChat data to clients, which are mostly remote interfaces.
+In this document, relay means WeeChat with relay plugin, which acts as “server” and allows clients to connect. Client mean the program you used to connect to your relay.
+To use Weechat and Weechat Relay on OpenBSD you would need to follow those steps:
+Note: Start this on tmux then you can detach from it and use it as a relay from glowing bear web interface</description>
+    </item>
+    
+    <item>
+      <title>Search Results</title>
+      <link>https://wiki.oddprotocol.org/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://wiki.oddprotocol.org/search/</guid>
+      <description>This file exists solely to respond to /search URL with the related search layout template.
+No content shown here is rendered, all content is based in the template layouts/page/search.html
+Setting a very low sitemap priority will tell search engines this is not important content.
+This implementation uses Fusejs, jquery and mark.js
+Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```</description>
+    </item>
+    
+  </channel>
+</rss>

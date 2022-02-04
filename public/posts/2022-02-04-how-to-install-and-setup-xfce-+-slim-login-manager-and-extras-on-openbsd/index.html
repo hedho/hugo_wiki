@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</title>
+	
+	
+	<link rel="stylesheet" href="https://wiki.oddprotocol.org/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	========================<br>
+	== <a href="https://wiki.oddprotocol.org/">[oddprotocol wiki]</a> ==<br>
+	========================
+	<div style="float: right;">SHELL, BNC, VPSSEC via IRCnow!</div><br>
+	<p>
+	<nav>
+			<a href="https://wiki.oddprotocol.org/"><b>Start</b></a>.
+			
+			
+			<a href="https://wiki.oddprotocol.org/search/"><b>Search</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/posts/"><b>Archive</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/categories/"><b>Categories</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/tags/"><b>Tags</b></a>.
+			
+	</nav>
+	</p>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</h1>
+                         
+                            
+                            Author: <b style="color:red;">monaco</b></br>
+			<b><time>04.02.2022 01:46</time></b>
+			
+		           <a href="https://wiki.oddprotocol.org/tags/openbsd">OpenBSD</a>
+        	       
+		           <a href="https://wiki.oddprotocol.org/tags/xfce">XFCE</a>
+        	       
+
+			<div>
+				<p>This is a step by step how-to Install XFCE on OpenBSD and setup it.</p>
+<p>So we start by applying thise commands at terminal:</p>
+<pre tabindex="0"><code>usermod -G wheel user
+usermod -G operator user
+usermod -G staff user
+
+</code></pre><p>After you put the permissions at the user you want to use follow this:</p>
+<pre tabindex="0"><code>pkg_add nano
+nano /etc/doas.conf
+permit persist keepenv user
+
+</code></pre><p>Start installing xfce packages and necessary packages needed for XFCE:</p>
+<pre tabindex="0"><code>pkg_add xfce consolekit2
+pkg_add slim dbus avahi
+
+</code></pre><p>Add thise lines at /root/.xinitrc and at the specific user you want to use:</p>
+<pre tabindex="0"><code>nano /root/.xinitrc
+&quot;exec ck-launch-session startxfce4&quot;
+nano /home/user/.xinitrc
+&quot;exec ck-launch-session startxfce4&quot;
+
+</code></pre><p>Add slim to rc.local for autostart after boot:</p>
+<pre tabindex="0"><code>nano /etc/rc.local
+&quot;/usr/local/bin/slim -d&quot;
+
+</code></pre><p>Enable other services needed for xfce via rcctl:</p>
+<pre tabindex="0"><code>rcctl enable messagebus
+rcctl enable avahi_daemon
+rcctl disable xenodm
+
+</code></pre><p>And in the end restart:</p>
+<pre tabindex="0"><code>reboot
+
+</code></pre><p>Have a great time at the end :) enjoying:</p>
+<p>
+<figure>
+  <img src="https://i.ibb.co/Bnh952y/openbsdxfce.jpg" alt="" />
+</figure>
+
+
+</p>
+
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/">How to Install Kissmo Paste</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/">How to Setup Nginx Phpfpm</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/">How to Setup Nginx on Debian</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/">How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/">How to Setup Weechat Relay on Openbsd</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="https://wiki.oddprotocol.org/"><b>[oddprotocol wiki]</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>

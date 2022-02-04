@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>How to Setup Weechat Relay on Openbsd</title>
+	
+	
+	<link rel="stylesheet" href="https://wiki.oddprotocol.org/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	========================<br>
+	== <a href="https://wiki.oddprotocol.org/">[oddprotocol wiki]</a> ==<br>
+	========================
+	<div style="float: right;">SHELL, BNC, VPSSEC via IRCnow!</div><br>
+	<p>
+	<nav>
+			<a href="https://wiki.oddprotocol.org/"><b>Start</b></a>.
+			
+			
+			<a href="https://wiki.oddprotocol.org/search/"><b>Search</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/posts/"><b>Archive</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/categories/"><b>Categories</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/tags/"><b>Tags</b></a>.
+			
+	</nav>
+	</p>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>How to Setup Weechat Relay on Openbsd</h1>
+                         
+                            
+                            Author: <b style="color:red;">monaco</b></br>
+			<b><time>04.02.2022 01:21</time></b>
+			
+		           <a href="https://wiki.oddprotocol.org/tags/openbsd">OpenBSD</a>
+        	       
+		           <a href="https://wiki.oddprotocol.org/tags/weechat">Weechat</a>
+        	       
+
+			<div>
+				<p>This document is the specification of WeeChat Relay protocol: the protocol used to relay WeeChat data to clients, which are mostly remote interfaces.</p>
+<p>In this document, relay means WeeChat with relay plugin, which acts as “server” and allows clients to connect. Client mean the program you used to connect to your relay.</p>
+<p>To use Weechat and Weechat Relay on OpenBSD you would need to follow those steps:</p>
+<p>Note: Start this on tmux then you can detach from it and use it as a relay from glowing bear web interface</p>
+<p><code>$ weechat</code></p>
+<p>Note: Before you start setup Weechat Relay you will need to disable Listening to Ipv6 for it to work, at the moment it has an issue if Ipv6 is enabled for relay it binds only on Ipv6, it won’t be an issue if you do own an Ipv6.</p>
+<p>For this after you open weechat you would need to run:</p>
+<p><code>/set relay.network.ipv6 off</code></p>
+<p>Relay setup</p>
+<p>On the server’s instance of weechat:</p>
+<pre tabindex="0"><code>/relay add ssl.irc 8001
+/secure set relay WHATEVER_PASSWORD
+/set relay.network.password &quot;${sec.data.relay}&quot;
+
+</code></pre><p>On the server, to generate the ssl certificate using OpenSSL:</p>
+<pre tabindex="0"><code>mkdir -p ~/.weechat/ssl
+cd ~/.weechat/ssl
+openssl req -nodes -newkey rsa:2048 -keyout relay.pem -x509 -days 365 -out relay.pem
+
+</code></pre><p>Note: you can use acme-client as well</p>
+<p>On the client’s instance of weechat:</p>
+<pre tabindex="0"><code>/server add ircnow irc.ircnow.org
+/connect ircnow
+</code></pre>
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/">How to Install Kissmo Paste</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/">How to Setup Nginx Phpfpm</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/">How to Setup Nginx on Debian</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/">How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/">How to Setup Weechat Relay on Openbsd</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="https://wiki.oddprotocol.org/"><b>[oddprotocol wiki]</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>

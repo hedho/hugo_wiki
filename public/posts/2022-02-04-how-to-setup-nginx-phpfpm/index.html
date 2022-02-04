@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>How to Setup Nginx Phpfpm</title>
+	
+	
+	<link rel="stylesheet" href="https://wiki.oddprotocol.org/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	========================<br>
+	== <a href="https://wiki.oddprotocol.org/">[oddprotocol wiki]</a> ==<br>
+	========================
+	<div style="float: right;">SHELL, BNC, VPSSEC via IRCnow!</div><br>
+	<p>
+	<nav>
+			<a href="https://wiki.oddprotocol.org/"><b>Start</b></a>.
+			
+			
+			<a href="https://wiki.oddprotocol.org/search/"><b>Search</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/posts/"><b>Archive</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/categories/"><b>Categories</b></a>.
+			
+			<a href="https://wiki.oddprotocol.org/tags/"><b>Tags</b></a>.
+			
+	</nav>
+	</p>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>How to Setup Nginx Phpfpm</h1>
+                         
+                            
+                            Author: <b style="color:red;">monaco</b></br>
+			<b><time>04.02.2022 02:43</time></b>
+			
+		           <a href="https://wiki.oddprotocol.org/tags/linux">Linux</a>
+        	       
+		           <a href="https://wiki.oddprotocol.org/tags/debian">Debian</a>
+        	       
+
+			<div>
+				<p>Install PHP7.4</p>
+<p>By default, Debian ships with PHP 7.4 in its upstream repositories. You can install it easily by just running the following command:</p>
+<pre><code>apt-get install php7.4 -y
+</code></pre>
+<p>Once the PHP is installed, verify the installed version with the following command:</p>
+<pre><code>php --version
+</code></pre>
+<p>You should get the following output:</p>
+<p>PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS ) Copyright (c) The PHP Group Zend Engine v3.4.0, Copyright (c) Zend Technologies</p>
+<pre><code>with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies
+</code></pre>
+<p>PHP configurations related to Nginx is stored in /etc/php/7.4/fpm/php.ini file. You can modify it for better performance. Install PHP7.4-FPM and Other Extensions</p>
+<p>Nginx does not contain native PHP processing. So you will need to install PHP-FPM for processing the PHP files. FPM is an alternative PHP FastCGI implementation with some additional features useful for heavy-loaded sites.</p>
+<p>You can install PHP7.4-FPM with other necessary extensions by running the following command:</p>
+<pre><code>apt-get install php7.4-fpm php7.4-cli php7.4-mysql php7.4-curl php7.4-json -y
+</code></pre>
+<p>Once all the packages are installed, start the PHP7.4-FPM service and enable it to start at system reboot:</p>
+<pre><code>systemctl start php7.4-fpm systemctl enable php7.4-fpm
+</code></pre>
+<p>Configure Nginx to Process PHP Files</p>
+<p>Next, you will need to configure Nginx to process PHP files.</p>
+<p>To do so, create a new Nginx virtual host configuration file with the following command:</p>
+<pre><code>nano /etc/nginx/sites-available/example
+</code></pre>
+<p>Add the following lines:</p>
+<pre><code>server {
+        listen 80;
+        server_name test.example.com;
+        root /var/www/html;
+        index info.php;
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+    }
+
+}
+</code></pre>
+<p>Save and close the file then enable the Nginx virtual host configuration file with the following command:</p>
+<pre><code>ln -s /etc/nginx/sites-available/example /etc/nginx/sites-enabled/
+</code></pre>
+<p>Next, verify the Nginx for any syntax error with the following command:</p>
+<pre><code>nginx -t
+</code></pre>
+<p>You should get the following output:</p>
+<blockquote>
+<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
+</blockquote>
+<p>Finally, restart the Nginx service to apply the configuration changes:</p>
+<pre><code>systemctl restart nginx
+</code></pre>
+<p>Next, create a info.php file to verify the PHP version:</p>
+<pre><code>nano /var/www/html/info.php
+</code></pre>
+<p>Add the following code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    <span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> <span style="color:#a6e22e">phpinfo</span>(); <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Save and close the file when you are finished. Verify PHP</p>
+<p>At this point, Nginx is configured to process PHP files. Its time to test it.</p>
+
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/">How to Install Kissmo Paste</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/">How to Setup Nginx Phpfpm</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/">How to Setup Nginx on Debian</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-&#43;-slim-login-manager-and-extras-on-openbsd/">How to Install and Setup XFCE &#43; Slim Login Manager and Extras on OpenBSD</a></li>
+				
+				<li><a href="https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/">How to Setup Weechat Relay on Openbsd</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2022 <a href="https://wiki.oddprotocol.org/"><b>[oddprotocol wiki]</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>
