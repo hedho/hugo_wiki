@@ -1,4 +1,4 @@
-baseURL = 'https://wiki.oddprotocol.org/'
+baseURL = 'https://hedho.github.io/hugo_wiki/'
 canonifyURLs = true
 languageCode = 'en-us'
 title = '[oddprotocol wiki]'
