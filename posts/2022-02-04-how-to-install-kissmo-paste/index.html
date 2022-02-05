@@ -1,0 +1,87 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<style type=text/css>body{font-family:monospace}</style>
+<title>How to Install Kissmo Paste</title>
+<link rel=stylesheet href=https://wiki.oddprotocol.org/css/style.css>
+</head>
+<body>
+<header>
+========================<br>
+== <a href=https://wiki.oddprotocol.org/>[oddprotocol wiki]</a> ==<br>
+========================
+<div style=float:right>SHELL, BNC, VPSSEC via IRCnow!</div><br>
+<p>
+<nav>
+<a href=https://wiki.oddprotocol.org/><b>Start</b></a>.
+<a href=https://wiki.oddprotocol.org/search/><b>Search</b></a>.
+<a href=https://wiki.oddprotocol.org/posts/><b>Archive</b></a>.
+<a href=https://wiki.oddprotocol.org/categories/><b>Categories</b></a>.
+<a href=https://wiki.oddprotocol.org/tags/><b>Tags</b></a>.
+</nav>
+</p>
+</header>
+<main>
+<article>
+<h1>How to Install Kissmo Paste</h1>
+Author: <b style=color:red>monaco</b></br>
+<b><time>04.02.2022 02:47</time></b>
+<a href=https://wiki.oddprotocol.org/tags/kissmo>KISSmo</a>
+<div>
+<p>Go to the desired directory with commands as follow:</p>
+<p><strong>cd /var/www/websiteyouwant</strong> - This can be any location you put you&rsquo;re web.</p>
+<p><strong>wget <a href=https://gitlab.com/hedho/KISSmo/-/archive/main/KISSmo-main.zip>https://gitlab.com/hedho/KISSmo/-/archive/main/KISSmo-main.zip</a></strong></p>
+<p>Then unzip:</p>
+<p><strong>unzip KISSmo-main.zip</strong></p>
+<p>Edit index.php:</p>
+<p>Replace line <strong>7</strong> where you will find:</p>
+<p><strong>$ncsite=&ldquo;paste.oddprotocol.org 7777&rdquo;;</strong></p>
+<p>Edit it to:</p>
+<p>$ncsite=&ldquo;yourweb.tld 7777&rdquo;;</p>
+<p>Replace line <strong>60</strong> where you will find:</p>
+<p><strong>$sitename = &ldquo;<a href=https://paste.oddprotocol.org/p>https://paste.oddprotocol.org/p</a>";</strong></p>
+<p>Edit it to:</p>
+<p><strong>$sitename = &ldquo;<a href=https://youreweb.tld/p>https://youreweb.tld/p</a>";</strong></p>
+<p>If you&rsquo;re using <strong>OpenHTTPD</strong> you will need to add this to <strong>/etc/httpd.conf</strong>:</p>
+<p>Under you&rsquo;re specific site that you&rsquo;re looking to run KISSmo add this:</p>
+<pre><code>location &quot;/test/p/*&quot; { 
+	directory { auto index, index &quot;index.txt&quot; }
+}
+</code></pre>
+<p>If you&rsquo;re using <strong>Nginx</strong> you will need to add this to /etc/nginx.conf or if you&rsquo;re running specific nginx conf for a specific site you know where it is:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-php data-lang=php>    <span style=color:#a6e22e>location</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>p</span><span style=color:#f92672>/</span> {
+   <span style=color:#a6e22e>alias</span> <span style=color:#f92672>/</span><span style=color:#a6e22e>home</span><span style=color:#f92672>/</span><span style=color:#a6e22e>admin</span><span style=color:#f92672>/</span><span style=color:#a6e22e>web</span><span style=color:#f92672>/</span><span style=color:#a6e22e>paste</span><span style=color:#f92672>.</span><span style=color:#a6e22e>oddprotocol</span><span style=color:#f92672>.</span><span style=color:#a6e22e>org</span><span style=color:#f92672>/</span><span style=color:#a6e22e>public_html</span><span style=color:#f92672>/</span><span style=color:#a6e22e>p</span><span style=color:#f92672>/</span>;
+   <span style=color:#a6e22e>index</span> <span style=color:#a6e22e>index</span><span style=color:#f92672>.</span><span style=color:#a6e22e>txt</span>;
+   <span style=color:#a6e22e>autoindex</span> <span style=color:#a6e22e>on</span>;
+
+}
+</code></pre></div><p>Running KISSmo actually:</p>
+<p><a href=https://paste.oddprotocol.org/>https://paste.oddprotocol.org</a></p>
+<p>About KISSmo: <a href=https://paste.oddprotocol.org/about.html>https://paste.oddprotocol.org/about.html</a></p>
+</div>
+</article>
+</main>
+<aside>
+<div>
+<div>
+<h3>LATEST POSTS</h3>
+</div>
+<div>
+<ul>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/>How to Install Kissmo Paste</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/>How to Setup Nginx Phpfpm</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/>How to Setup Nginx on Debian</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-+-slim-login-manager-and-extras-on-openbsd/>How to Install and Setup XFCE + Slim Login Manager and Extras on OpenBSD</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/>How to Setup Weechat Relay on Openbsd</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<footer>
+<p>&copy; 2022 <a href=https://wiki.oddprotocol.org/><b>[oddprotocol wiki]</b></a>.
+</p>
+</footer>
+</body>
+</html>

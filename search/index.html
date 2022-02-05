@@ -1,0 +1,68 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<style type=text/css>body{font-family:monospace}</style>
+<title>Site Search</title>
+<link rel=stylesheet href=https://wiki.oddprotocol.org/css/style.css>
+</head>
+<body>
+<header>
+========================<br>
+== <a href=https://wiki.oddprotocol.org/>[oddprotocol wiki]</a> ==<br>
+========================
+<div style=float:right>SHELL, BNC, VPSSEC via IRCnow!</div><br>
+<p>
+<nav>
+<a href=https://wiki.oddprotocol.org/><b>Start</b></a>.
+<a href=https://wiki.oddprotocol.org/search/><b>Search</b></a>.
+<a href=https://wiki.oddprotocol.org/posts/><b>Archive</b></a>.
+<a href=https://wiki.oddprotocol.org/categories/><b>Categories</b></a>.
+<a href=https://wiki.oddprotocol.org/tags/><b>Tags</b></a>.
+</nav>
+</p>
+</header>
+<main>
+<article>
+<h1>Site Search</h1>
+Author: <b style=color:red></b></br>
+<b><time>01.01.0001 00:00</time></b>
+<div>
+<form id=custom-search name=custom-search method=post onsubmit="return customSearchResults(),!1">
+<p>
+<input id=custom-search-field type=text name=search title="Search String" placeholder="You're searching for!">
+</p>
+<p>
+<input type=radio name=option value=AND checked> UND-Suche<br>
+<input type=radio name=option value=OR> ODER-Suche
+</p>
+</form>
+<div id=custom-search-results></div>
+<script>let params={json_src:'/index.json',minlength:3,defaultsearch:'AND',sort_date:'DESC',autocomplete:1,section_search:0,badwords:'and,there,the,this,that,you',json_wait:'<p><em>loading...</em></p>',json_ready:'<p><em>Please enter a search term</em></p>',extern_icon:' (external link)',err_badstring:'<p>To short!</p>',err_noresult:'<p>Unfortunately no search result. Please try again.</p>',err_norequest:'<p style="text-align: center; color:red;">The full text search is currently not available.</p>',err_filefailed:'<p style="text-align: center;color: red;">Search file could not be retrieved.</p>',res_one_item:'<p><em>[CNT] RESULT</em></p>',res_more_items:'<p><em>[CNT] RESULTS</em></p>',res_out_top:'<ul>',res_out_bottom:'</ul>',res_item_tpl:'<li><a href="[URL]">[TITLE]</a><br>[DATE]:[SUMMARY]<br><em>[SECTION][TAGS]</em></li>',add_searchlink:'<p><a href="https://duckduckgo.com/?q=site:wiki.oddprotocol.org [QUERY]" target="_blank"><i>Not satisfied with the search results? External search via DuckDuckGo ...</i></a></p>'},section_trans={post:"Blog"},searchfield_weight={title:5,tags:5,summary:2,content:1}</script>
+<script type=text/javascript src=https://wiki.oddprotocol.org/js/search.js></script>
+</div>
+</article>
+</main>
+<aside>
+<div>
+<div>
+<h3>LATEST POSTS</h3>
+</div>
+<div>
+<ul>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-kissmo-paste/>How to Install Kissmo Paste</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-phpfpm/>How to Setup Nginx Phpfpm</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-nginx-on-debian/>How to Setup Nginx on Debian</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-install-and-setup-xfce-+-slim-login-manager-and-extras-on-openbsd/>How to Install and Setup XFCE + Slim Login Manager and Extras on OpenBSD</a></li>
+<li><a href=https://wiki.oddprotocol.org/posts/2022-02-04-how-to-setup-weechat-relay-on-openbsd/>How to Setup Weechat Relay on Openbsd</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<footer>
+<p>&copy; 2022 <a href=https://wiki.oddprotocol.org/><b>[oddprotocol wiki]</b></a>.
+</p>
+</footer>
+</body>
+</html>
